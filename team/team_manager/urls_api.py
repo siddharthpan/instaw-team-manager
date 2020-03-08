@@ -18,5 +18,5 @@ from django.urls import path, include
 from . import views_api
 
 urlpatterns = [
-    path('team-manager/api/v1/team_manager/', views_api.ManageTeam.as_view()),
+    path('manage_member/', views_api.ManageTeam.as_view()),
 ]

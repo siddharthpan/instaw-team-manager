@@ -2,7 +2,7 @@ from django.db import models
 
 class MemberManager(models.Manager):
     def get_all_member_details(self):
-        return self.values('member_id', 'first_name', 'last_name', 'email', 'phone')
+        return self.values('member_id', 'first_name', 'last_name', 'email', 'phone', 'member_type', 'created_at')
 
     def get_all_members(self):
         return self.all()
@@ -17,13 +17,16 @@ class MemberManager(models.Manager):
     def edit_team_member(self, **data):
         member_id = data.get('member_id')
         member_obj = self.filter(member_id=member_id)
-        member_obj.update(**data)
-        return member_obj
+        if member_obj:
+            member_obj.update(**data)
+            return member_obj[0]
+        else:
+            return "Object Not Found"
 
     def delete_team_member(self, member_id):
         member_obj = self.get(member_id=member_id)
         member_obj.delete()
-        return f"Member {member_obj} deleted"
+        return member_obj
 
 class Member(models.Model):
     """
@@ -41,6 +44,7 @@ class Member(models.Model):
     phone = models.CharField(max_length=20, blank=True, null=True)
     member_type = models.CharField(max_length=100, choices=TYPE, blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
     objects = models.Manager()
     manager = MemberManager()
 
