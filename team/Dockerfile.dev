@@ -1,0 +1,35 @@
+# pull official base image
+FROM python:latest
+
+# set work directory
+WORKDIR /usr/src/app
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update 
+RUN apt install build-essential gcc g++ python3-dev -y
+# RUN apt install postgresql-server-dev-11 -y
+RUN apt-get install netcat -y
+# RUN pip install psycopg2-binary
+
+# install/upgrade dependencies
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
+
+COPY ./requirements.txt /usr/src/app/requirements.txt
+RUN pip install -r requirements.txt
+# RUN pip install numpy pandas
+
+#copy project files
+COPY . /usr/src/app/
+
+# copy entrypoint.sh
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+
+# copy project
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

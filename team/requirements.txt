@@ -1,0 +1,11 @@
+django
+django-extensions 
+djangorestframework 
+requests
+djangorestframework-simplejwt
+django-cors-headers
+jupyter
+pandas
+numpy
+asgiref
+mysqlclient
