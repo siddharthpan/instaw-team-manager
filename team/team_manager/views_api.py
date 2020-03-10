@@ -20,6 +20,7 @@ class ManageTeam(APIView):
     def post(self, request):
         data = json.loads(request.body)
         time_now = datetime.now()
+        print(data)
         data['created_at'] = time_now
         member_obj = Member.manager.add_team_member(**data)
         message =  f"Member {member_obj} created. Data stored in DB."

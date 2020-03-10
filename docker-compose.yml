@@ -35,15 +35,15 @@ services:
     command: mysqld --default-authentication-plugin=mysql_native_password --skip-mysqlx
 
 
-  # ui:
-  #   build:
-  #     dockerfile: Dockerfile.dev
-  #     context: ../team_ui
-  #   volumes:
-  #     - /app/node_modules
-  #     - ../team_ui:/app
-  #   ports:
-  #     - 3000:3000
+  ui:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./team_ui
+    volumes:
+      - /app/node_modules
+      - ./team_ui:/app
+    ports:
+      - 3000:3000
 
 volumes:
   mysql_data:
