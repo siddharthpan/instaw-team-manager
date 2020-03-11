@@ -45,5 +45,5 @@ services:
     ports:
       - 3000:3000
 
-volumes:
-  mysql_data:
+# volumes:
+#   mysql_data:
