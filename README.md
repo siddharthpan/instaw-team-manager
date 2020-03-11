@@ -5,9 +5,9 @@
 The entire project is Dockerized using Docker-compose.
 Comprises of 3 containers: 
 
-*Backend* (Django-based API Engine)
-*UI* (React-based User Interface)
-*DB* (MySQL database)
+1. *Backend* (Django-based API Engine)
+2. *UI* (React-based User Interface)
+3. *DB* (MySQL database)
 
 ### Steps to setup the project
 
