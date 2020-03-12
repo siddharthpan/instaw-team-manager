@@ -26,8 +26,6 @@ class TeamMemberTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vendor: "",
-      discount: "",
       onClick: props.onClick,
       icon: props.icon,
       ModalOpen: false,
@@ -41,22 +39,6 @@ class TeamMemberTable extends Component {
         this.props.getTeamMemberData()
         // console.log()
     }
-
-    // handleSubmit = (data) => {
-    //   // let vendor = state.vendor
-    //   // let discount = state.discount
-    //   axios.post(`http://localhost:8008/team-manager/api/v1/team_manager/manage_member/`, data)
-    //          .then(response => {
-    //               console.log("Discount percentage Update Success")
-    //               console.log(response)
-    //               // if (response.status = 200){
-    //               //   handleSnackbarOpen()
-    //               // }
-    //           })
-    //           .catch( error => {
-    //               console.log(error)
-    //           })
-    // };
 
       handleChange = (event,v) => {
       // console.log("called")
@@ -178,8 +160,6 @@ class TeamMemberTable extends Component {
                   // isEditable: rowData => rowData.name === "discount_perc", // only name(a) rows would be editable
                   onRowUpdate: (newData, oldData) =>
                       new Promise((resolve, reject) => {
-                        let vendor = newData.name
-                        let discount = newData.discount_perc
                         axios.put(`http://localhost:8008/team-manager/api/v1/team_manager/manage_member/`, newData)
                           .then(response => {
                               console.log("Team Member Update Success")
